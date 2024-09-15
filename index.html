@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Love Anniversary</title>
+
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #ffcccc, #ff99cc, #ff66b2);
+        background-size: 200% 200%; /* Expand background to animate it */
+        animation: backgroundAnimation 10s ease-in-out infinite;
+        font-family: "Arial", sans-serif;
+        overflow: hidden;
+      }
+
+      @keyframes backgroundAnimation {
+        0% {
+          background-position: 0% 50%; /* Start at one end */
+        }
+        50% {
+          background-position: 100% 50%; /* Move to the other end */
+        }
+        100% {
+          background-position: 0% 50%; /* Return back */
+        }
+      }
+
+      .top-heading {
+        margin-bottom: 20px;
+      }
+
+      .heart {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(243, 6, 112);
+        position: relative;
+        transform: rotate(45deg);
+        animation: heartbeat 1.5s infinite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+      }
+
+      .boy-name,
+      .girl-name {
+        position: absolute;
+        font-size: 1rem;
+        color: white;
+        transform: rotate(45deg);
+        font-family: "Arial", sans-serif;
+      }
+
+      .boy-name {
+        top: 20px;
+        z-index: 3;
+      }
+
+      .girl-name {
+        bottom: 30px;
+        right: auto;
+        z-index: 3;
+      }
+
+      .heart::before,
+      .heart::after {
+        content: "";
+        width: 100px;
+        height: 100px;
+        background-color: rgb(243, 6, 112);
+        border-radius: 50%;
+        position: absolute;
+        z-index: 2;
+      }
+
+      .heart::before {
+        top: -50px;
+        left: 0;
+      }
+
+      .heart::after {
+        left: 50px;
+        top: 0;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(0.8) rotate(-45deg);
+        }
+        25%,
+        75% {
+          transform: scale(1) rotate(-45deg);
+        }
+        50% {
+          transform: scale(1.2) rotate(-45deg);
+        }
+      }
+
+      h1 {
+        position: absolute;
+        top: 20%;
+        font-size: 3.5rem;
+        color: #ff1a75;
+        text-align: center;
+        animation: fadeIn 3s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      #countdown {
+        font-size: 2rem;
+        position: absolute;
+        bottom: 10%;
+        color: #ff1a75;
+        animation: fadeIn 3s ease-in-out;
+      }
+
+      #muteButton {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #ff1a75;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      #muteButton:hover {
+        background-color: #ff4d88;
+      }
+
+      @keyframes floatHearts {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-200vh) scale(0.5);
+          opacity: 0;
+        }
+      }
+
+      .floating-heart {
+        position: absolute;
+        bottom: -10%;
+        background-color: pink;
+        width: 15px;
+        height: 15px;
+        transform: rotate(45deg);
+        border-radius: 50%;
+        animation: floatHearts 6s infinite ease-in;
+        opacity: 0.6;
+      }
+
+      .floating-heart::before,
+      .floating-heart::after {
+        content: "";
+        position: absolute;
+        background-color: pink;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+      }
+
+      .floating-heart::before {
+        top: -7.5px;
+        left: 0;
+      }
+      .floating-heart::after {
+        left: 7.5px;
+        top: 0;
+      }
+
+      .romantic-quote {
+        padding-top: 70px;
+        position: absolute;
+        top: 60%;
+        font-size: 1.8rem;
+        color: #ff4d88;
+        text-align: center;
+        width: 80%;
+        animation: fadeIn 2s ease-in-out;
+      }
+      .glassy-container {
+        position: absolute;
+        top: 70%;
+        width: 50%;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+        border-radius: 15px;
+        backdrop-filter: blur(10px); /* Frosted glass effect */
+        border: 1px solid rgba(255, 255, 255, 0.3); /* Optional border for glassy effect */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        color: #ff4d88;
+        font-size: 1.5rem;
+        text-align: center;
+        animation: fadeIn 2s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="top-heading">Happy Love Anniversary!</h1>
+    <div class="heart">
+      <span class="boy-name">Hamir</span>
+      <span class="girl-name">Safia</span>
+    </div>
+    <br />
+    <div id="countdown"></div>
+    <button id="muteButton">Mute</button>
+    <div id="quote" class="romantic-quote glassy-container"></div>
+
+    <audio id="loveAudio" loop autoplay>
+      <source src="music.mp3" type="audio/mp3" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script>
+      // Countdown Script
+      const countdown = document.getElementById("countdown");
+      const anniversaryDate = new Date("2024-09-16").getTime(); // Set your anniversary date here
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = anniversaryDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdown.innerHTML = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        if (distance < 0) {
+          clearInterval(countdownInterval);
+          countdown.innerHTML = "Happy Anniversary!";
+        }
+      }
+
+      const countdownInterval = setInterval(updateCountdown, 1000);
+
+      // Audio Mute/Unmute Button
+      const muteButton = document.getElementById("muteButton");
+      const audio = document.getElementById("loveAudio");
+
+      // Initially playing the audio
+      audio.play();
+
+      muteButton.addEventListener("click", () => {
+        if (audio.muted) {
+          audio.muted = false;
+          muteButton.textContent = "Mute";
+        } else {
+          audio.muted = true;
+          muteButton.textContent = "Unmute";
+        }
+      });
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("floating-heart");
+        document.body.appendChild(heart);
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 2 + 5 + "s"; // Varying speeds
+        setTimeout(() => heart.remove(), 6000); // Remove heart after animation
+      }
+
+      setInterval(createHeart, 500); // Generate hearts every 500ms
+
+      const quotes = [
+        "You are my today and all of my tomorrows.",
+        "In you, I've found the love of my life and my closest truest friend.",
+        "I love you, not only for what you are, but for what I am when I am with you.",
+        "Every love story is beautiful, but ours is my favorite.",
+      ];
+
+      let currentQuote = 0;
+      const quoteElement = document.getElementById("quote");
+
+      function changeQuote() {
+        quoteElement.textContent = quotes[currentQuote];
+        currentQuote = (currentQuote + 1) % quotes.length;
+      }
+
+      setInterval(changeQuote, 5000); // Change quote every 5 seconds
+      changeQuote(); // Display the first quote immediately
+    </script>
+  </body>
+</html>
