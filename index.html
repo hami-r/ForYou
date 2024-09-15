@@ -8,145 +8,121 @@
     <style>
       body {
         margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: linear-gradient(135deg, #ffcccc, #ff99cc, #ff66b2);
-        background-size: 200% 200%; /* Expand background to animate it */
+        padding: 20px;
+        background: linear-gradient(135deg, #ffb3b3, #ef4b4b, #e59292);
+        background-size: 200% 200%;
         animation: backgroundAnimation 10s ease-in-out infinite;
         font-family: "Arial", sans-serif;
-        overflow: hidden;
       }
 
       @keyframes backgroundAnimation {
         0% {
-          background-position: 0% 50%; /* Start at one end */
+          background-position: 0% 50%;
         }
         50% {
-          background-position: 100% 50%; /* Move to the other end */
+          background-position: 100% 50%;
         }
         100% {
-          background-position: 0% 50%; /* Return back */
+          background-position: 0% 50%;
         }
       }
 
-      .top-heading {
-        margin-bottom: 20px;
-      }
-
-      .heart {
-        width: 100px;
-        height: 100px;
-        background-color: rgb(243, 6, 112);
-        position: relative;
-        transform: rotate(45deg);
-        animation: heartbeat 1.5s infinite;
+      #intro-section {
+        padding: 60px 20px;
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 2;
       }
 
-      .boy-name,
-      .girl-name {
-        position: absolute;
-        font-size: 1rem;
-        color: white;
-        transform: rotate(45deg);
-        font-family: "Arial", sans-serif;
+      .container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        width: 100%;
+        margin-bottom: 50px;
       }
 
-      .boy-name {
-        top: 20px;
-        z-index: 3;
+      .text-content {
+        flex: 1;
+        padding-right: 40px;
       }
 
-      .girl-name {
-        bottom: 30px;
-        right: auto;
-        z-index: 3;
+      .text-content h2 {
+        font-size: 2.5rem;
+        color: #e3e2e2;
+        margin-bottom: 20px;
       }
 
-      .heart::before,
-      .heart::after {
-        content: "";
-        width: 100px;
-        height: 100px;
-        background-color: rgb(243, 6, 112);
-        border-radius: 50%;
-        position: absolute;
-        z-index: 2;
+      .text-content p {
+        font-size: 1.5rem;
+        color: #ffe6e6;
+        line-height: 1.8;
       }
 
-      .heart::before {
-        top: -50px;
-        left: 0;
+      .image-content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        mix-blend-mode: color-burn;
       }
 
-      .heart::after {
-        left: 50px;
-        top: 0;
+      .image-content img {
+        max-width: 100%;
+        transition: transform 0.3s ease;
       }
 
-      @keyframes heartbeat {
-        0%,
-        100% {
-          transform: scale(0.8) rotate(-45deg);
-        }
-        25%,
-        75% {
-          transform: scale(1) rotate(-45deg);
-        }
-        50% {
-          transform: scale(1.2) rotate(-45deg);
-        }
+      .image-content img:hover {
+        transform: scale(1.05);
       }
 
-      h1 {
-        position: absolute;
-        top: 20%;
+      .top-heading {
         font-size: 3.5rem;
-        color: #ff1a75;
+        color: rgb(244, 241, 241);
         text-align: center;
-        animation: fadeIn 3s ease-in-out;
+        margin-top: 20px;
+        margin-bottom: 40px;
       }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
+      .romantic-quote {
+        padding: 20px;
+        font-size: 1.8rem;
+        color: #ff9999;
+        text-align: center;
+        width: 80%;
+        z-index: 7;
+        margin: 0 auto;
       }
 
-      #countdown {
-        font-size: 2rem;
-        position: absolute;
-        bottom: 10%;
-        color: #ff1a75;
-        animation: fadeIn 3s ease-in-out;
+      /* Glassy Container for Quotes */
+      .glassy-container {
+        width: 80%;
+        height: 40vh;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.355);
+        border-radius: 15px;
+        color: #cd1919;
+        font-size: 1.5rem;
+        text-align: center;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.3s ease-in-out;
+        z-index: 7;
       }
 
-      #muteButton {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        padding: 10px 20px;
-        background-color: #ff1a75;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: background-color 0.3s ease-in-out;
+      .glassy-container:hover {
+        transform: scale(1.05);
       }
 
-      #muteButton:hover {
-        background-color: #ff4d88;
+      /* Adding quotation marks to the quotes */
+      .quote-text {
+        quotes: "“" "”";
       }
 
+      /* Floating hearts animation */
       @keyframes floatHearts {
         0% {
           transform: translateY(0) scale(1);
@@ -159,22 +135,22 @@
       }
 
       .floating-heart {
-        position: absolute;
+        position: fixed;
         bottom: -10%;
-        background-color: pink;
+        background-color: #f78484;
         width: 15px;
         height: 15px;
         transform: rotate(45deg);
         border-radius: 50%;
         animation: floatHearts 6s infinite ease-in;
-        opacity: 0.6;
+        opacity: 0.1;
       }
 
       .floating-heart::before,
       .floating-heart::after {
         content: "";
-        position: absolute;
-        background-color: pink;
+        position: fixed;
+        background-color: #f78484;
         width: 15px;
         height: 15px;
         border-radius: 50%;
@@ -184,88 +160,395 @@
         top: -7.5px;
         left: 0;
       }
+
       .floating-heart::after {
         left: 7.5px;
         top: 0;
       }
 
-      .romantic-quote {
-        padding-top: 70px;
+      /* Mute Button Styling */
+      #muteButton {
         position: absolute;
-        top: 60%;
-        font-size: 1.8rem;
-        color: #ff4d88;
-        text-align: center;
-        width: 80%;
-        animation: fadeIn 2s ease-in-out;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #f39797;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease-in-out;
       }
-      .glassy-container {
-        position: absolute;
-        top: 70%;
-        width: 50%;
-        padding: 10px;
-        background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
-        border-radius: 15px;
-        backdrop-filter: blur(10px); /* Frosted glass effect */
-        border: 1px solid rgba(255, 255, 255, 0.3); /* Optional border for glassy effect */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-        color: #ff4d88;
-        font-size: 1.5rem;
+
+      #muteButton:hover {
+        background-color: #cc0000; /* Darker red */
+      }
+      /* CSS styles */
+      .envelope-wrapper {
         text-align: center;
-        animation: fadeIn 2s ease-in-out;
+        margin-top: 300px;
+        margin-bottom: 150px;
+      }
+      #envelope {
+        position: relative;
+        width: 280px;
+        height: 180px;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #f9d9d9;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .front {
+        position: absolute;
+        width: 0;
+        height: 0;
+        z-index: 3;
+      }
+      .flap {
+        border-left: 140px solid transparent;
+        border-right: 140px solid transparent;
+        border-bottom: 82px solid transparent;
+        border-top: 98px solid #f9d9d9; /* Light pink */
+        transform-origin: top;
+      }
+      .pocket {
+        border-left: 140px solid #f49c9c; /* Pink */
+        border-right: 140px solid #f49c9c; /* Pink */
+        border-bottom: 90px solid #f5b3b3; /* Darker pink */
+        border-top: 90px solid transparent;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
+      .letter {
+        position: relative;
+        background-color: #fff0f1; /* Very light pink */
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        height: 90%;
+        top: 5%;
+        border-radius: 6px;
+        box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
+        transition: transform 0.4s ease, z-index 0.6s;
+      }
+      .letter:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+      .words {
+        position: absolute;
+        left: 10%;
+        width: 80%;
+        height: 14%;
+        background-color: #ffeef0; /* Light pink */
+      }
+      .words.line1 {
+        top: 15%;
+        width: 20%;
+        height: 7%;
+      }
+      .words.line2 {
+        top: 30%;
+      }
+      .words.line3 {
+        top: 50%;
+      }
+      .words.line4 {
+        top: 70%;
+      }
+      .open .flap {
+        transform: rotatex(180deg);
+        transition: transform 0.4s ease, z-index 0.6s;
+        z-index: 1;
+      }
+      .close .flap {
+        transform: rotatex(0deg);
+        transition: transform 0.4s 0.6s ease, z-index 1s;
+        z-index: 5;
+      }
+      .close .letter {
+        transform: translateY(0px);
+        z-index: 1;
+      }
+      .open .letter {
+        transform: translateY(-300px);
+        z-index: 2;
+      }
+      .letter.move-right {
+        animation: moveOut 3s ease-in-out forwards;
+      }
+      .letter.move-back {
+        animation: moveBack 3s ease-in-out forwards;
+      }
+      .hearts {
+        position: absolute;
+        top: 90px;
+        left: 0;
+        right: 0;
+        z-index: 2;
+      }
+      .heart {
+        position: absolute;
+        bottom: 0;
+        right: 10%;
+      }
+      .heart:before,
+      .heart:after {
+        position: absolute;
+        content: "";
+        left: 50px;
+        top: 0;
+        width: 50px;
+        height: 80px;
+        background: #c70606;
+        border-radius: 50px 50px 0 0;
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+      }
+      .heart:after {
+        left: 0;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
+      }
+      .close .heart {
+        opacity: 0;
+        animation: none;
+      }
+      .a1 {
+        left: 20%;
+        transform: scale(0.6);
+        opacity: 1;
+        animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
+        animation-fill-mode: forwards;
+        animation-delay: 0.7s;
+      }
+      .a2 {
+        left: 55%;
+        transform: scale(1);
+        opacity: 1;
+        animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate;
+        animation-fill-mode: forwards;
+        animation-delay: 0.7s;
+      }
+      .a3 {
+        left: 10%;
+        transform: scale(0.8);
+        opacity: 1;
+        animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate;
+        animation-fill-mode: forwards;
+        animation-delay: 0.7s;
+      }
+      /* Font import for a romantic look */
+      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400&display=swap");
+
+      .letter-content {
+        display: none;
+        padding: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        background-color: #fff0f1; /* Very light pink background */
+        font-family: "Playfair Display", serif; /* Elegant serif font */
+        color: #5b5b5b; /* Soft gray text color */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-size: xx-small;
+        line-height: 1.1;
+      }
+
+      .letter-content h2 {
+        font-family: "Dancing Script", cursive; /* Romantic script font */
+        color: #e63946; /* Deep pink for the heading */
+        margin-bottom: 10px;
+        text-align: left;
+        font-size: 10px;
+      }
+
+      .letter-content p {
+        margin-bottom: 10px;
+        text-align: justify;
+      }
+
+      .letter-content .signature {
+        margin-top: 5px;
+        font-family: "Dancing Script", cursive;
+        color: #e63946;
+        /* text-align: right; */
+        font-size: 10px;
+      }
+
+      .letter-content .right-p {
+        /* text-align: right; */
+        margin-bottom: 5px;
+      }
+
+      .letter-content.show {
+        display: block;
+      }
+
+      @keyframes slideUp {
+        0% {
+          top: 0;
+        }
+        100% {
+          top: -600px;
+        }
+      }
+      @keyframes sideSway {
+        0% {
+          margin-left: 0px;
+        }
+        100% {
+          margin-left: 50px;
+        }
+      }
+      @keyframes moveOut {
+        0% {
+          transform: translateX(0) translateY(-300px);
+          opacity: 1;
+        }
+        25% {
+          transform: translateX(400px) translateY(-300px);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(400px) translateY(0px) scale(1.5);
+          opacity: 1;
+        }
+      }
+      @keyframes moveBack {
+        0% {
+          transform: translateX(400px) translateY(0px) scale(1.2);
+          opacity: 1;
+        }
+        75% {
+          transform: translateX(300px) translateY(-300px);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(0) translateY(-300px);
+          opacity: 1;
+        }
+      }
+
+      .scroller-wrapper {
+        overflow: hidden; /* Hide the overflowing text */
+        white-space: nowrap; /* Prevent text from wrapping */
+        width: 100%; /* Full width of its parent */
+        position: relative; /* For positioning within parent */
+      }
+
+      .scroller {
+        display: inline-block;
+        white-space: nowrap;
+        animation: scroll-left 10s linear infinite;
+        /* Ensure the width of the content is enough to scroll */
+      }
+
+      .scroller-text {
+        display: inline-block;
+        font-size: 24px;
+        color: #F8F7F2; /* Example text color */
+        padding: 0 20px; /* Space between repeats */
+        font-family: Arial, sans-serif;
+      }
+
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(100%); /* Start off the screen */
+        }
+        100% {
+          transform: translateX(-100%); /* End off the screen */
+        }
       }
     </style>
   </head>
   <body>
-    <h1 class="top-heading">Happy Love Anniversary!</h1>
-    <div class="heart">
-      <span class="boy-name">Hamir</span>
-      <span class="girl-name">Safia</span>
-    </div>
-    <br />
-    <div id="countdown"></div>
     <button id="muteButton">Mute</button>
+    <h1 class="top-heading">Happy Love Anniversary!</h1>
+    <section id="intro-section">
+      <div class="container">
+        <div class="text-content">
+          <h2>Celebrating Our Love 😘</h2>
+          <p>
+            "This day marks another beautiful year of our journey together. I am
+            so grateful for every moment we have shared, every smile, every
+            laugh, and every challenge we have faced together. Here's to many
+            more years of love and happiness!"
+          </p>
+        </div>
+        <div class="image-content">
+          <img src="heart_tail.png" alt="Heart" />
+        </div>
+      </div>
+    </section>
     <div id="quote" class="romantic-quote glassy-container"></div>
 
+    <div class="envelope-wrapper">
+      <div id="envelope" class="close">
+        <div class="front flap"></div>
+        <div class="front pocket"></div>
+        <div class="letter">
+          <div class="letter-content display-letter">
+            <h2>My one and only Safi,</h2>
+            <p>
+              I don't know how to begin this letter, You know I am not a fan of
+              surprises, or doesn't celebrate much. Still I thought I should do
+              this. Here I am 😍.
+            </p>
+            <p>
+              You are my blessings and the best thing happened, I really love
+              you and Inshallah we will be together until the end. I love you so
+              much my.❤️
+            </p>
+            <p class="right-p">Forever yours only,</p>
+            <p class="signature">Mimi</p>
+          </div>
+        </div>
+        <div class="hearts">
+          <div class="heart a1"></div>
+          <div class="heart a2"></div>
+          <div class="heart a3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroller-wrapper">
+      <div class="scroller">
+        <div class="scroller-text">I love you</div>
+        <div class="scroller-text">I love you</div>
+        <div class="scroller-text">I love you</div>
+        <div class="scroller-text">I love you</div>
+        <div class="scroller-text">I love you</div>
+        <div class="scroller-text">I love you</div>
+        <div class="scroller-text">I love you</div>
+        <div class="scroller-text">I love you</div>
+        <div class="scroller-text">I love you</div>
+        <div class="scroller-text">I love you</div>
+        <div class="scroller-text">I love you</div>
+        <div class="scroller-text">I love you</div>
+      </div>
+    </div>
     <audio id="loveAudio" loop autoplay>
-      <source src="music.mp3" type="audio/mp3" />
+      <source src="background_music.mp3" type="audio/mp3" />
       Your browser does not support the audio element.
     </audio>
 
     <script>
-      // Countdown Script
-      const countdown = document.getElementById("countdown");
-      const anniversaryDate = new Date("2024-09-16").getTime(); // Set your anniversary date here
-
-      function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = anniversaryDate - now;
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        countdown.innerHTML = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-        if (distance < 0) {
-          clearInterval(countdownInterval);
-          countdown.innerHTML = "Happy Anniversary!";
-        }
-      }
-
-      const countdownInterval = setInterval(updateCountdown, 1000);
-
-      // Audio Mute/Unmute Button
+      // Mute/Unmute Button functionality
       const muteButton = document.getElementById("muteButton");
       const audio = document.getElementById("loveAudio");
 
-      // Initially playing the audio
       audio.play();
 
       muteButton.addEventListener("click", () => {
+        audio.play();
         if (audio.muted) {
           audio.muted = false;
           muteButton.textContent = "Mute";
@@ -274,6 +557,8 @@
           muteButton.textContent = "Unmute";
         }
       });
+
+      // Function to create floating hearts
       function createHeart() {
         const heart = document.createElement("div");
         heart.classList.add("floating-heart");
@@ -284,25 +569,81 @@
         setTimeout(() => heart.remove(), 6000); // Remove heart after animation
       }
 
-      setInterval(createHeart, 500); // Generate hearts every 500ms
+      setInterval(createHeart, 1000); // Generate hearts every 500ms
 
+      // Quote Array and Functionality
       const quotes = [
-        "You are my today and all of my tomorrows.",
-        "In you, I've found the love of my life and my closest truest friend.",
-        "I love you, not only for what you are, but for what I am when I am with you.",
-        "Every love story is beautiful, but ours is my favorite.",
+        "Here's to another year of making memories together. Happy Anniversary!",
+        "You are my forever and always. Happy Anniversary!",
+        "Some of them are copied from internet hehe 😁, lazy me doesn't know how to write romantic quotes",
+        "With you, every day is a celebration. Happy Anniversary!",
+        "To the love of my life: Thank you for making every moment magical. Happy Anniversary!",
+        "Ya ya, one year is gone and  here's to many more years together!",
       ];
 
       let currentQuote = 0;
       const quoteElement = document.getElementById("quote");
 
       function changeQuote() {
-        quoteElement.textContent = quotes[currentQuote];
+        quoteElement.innerHTML = `<span class="quote-text">“</span>${quotes[currentQuote]}<span class="quote-text">”</span>`;
         currentQuote = (currentQuote + 1) % quotes.length;
       }
 
       setInterval(changeQuote, 5000); // Change quote every 5 seconds
       changeQuote(); // Display the first quote immediately
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var envelope = document.getElementById("envelope");
+        var letter = document.querySelector(".letter");
+        var letterContent = document.querySelector(".letter-content");
+        var hearts = document.querySelector(".hearts");
+
+        envelope.addEventListener("click", function () {
+          if (envelope.classList.contains("close")) {
+            open();
+          } else {
+            close();
+          }
+        });
+
+        function open() {
+          envelope.classList.add("open");
+          envelope.classList.remove("close");
+
+          // Add a delay before triggering the second animation
+          setTimeout(function () {
+            letter.classList.add("move-right");
+
+            // Show letter content after move-right animation ends
+            letter.addEventListener("animationend", function onAnimationEnd() {
+              letterContent.classList.add("show");
+              letter.removeEventListener("animationend", onAnimationEnd);
+              hearts.style.opacity = "0";
+            });
+          }, 400); // Delay matches the duration of the first animation
+        }
+
+        function close() {
+          letter.classList.remove("move-right");
+          letter.classList.add("move-back");
+
+          // Hide letter content before starting move-back animation
+          letterContent.classList.remove("show");
+
+          // Add a delay before closing the flap to match the letter's move-back animation
+          setTimeout(function () {
+            envelope.classList.add("close");
+            envelope.classList.remove("open");
+            hearts.style.opacity = "1";
+          }, 3000); // Matches the duration of moveBack animation
+
+          // Remove the move-back class after the animation completes
+          setTimeout(function () {
+            letter.classList.remove("move-back");
+          }, 3000); // Matches the duration of moveBack animation
+        }
+      });
+
     </script>
   </body>
 </html>
